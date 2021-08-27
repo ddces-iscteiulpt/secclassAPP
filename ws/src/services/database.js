@@ -3,7 +3,8 @@
 //'mongodb://localhost:27017/nome_da_base_de_dados
 //mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
 const mongoose = require("mongoose");
-const uri = "mongodb+srv://root_out:client_top@cluster0.rfblu.mongodb.net/SecClasS?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://root_out:client_top@cluster0.rfblu.mongodb.net/SecClasS?retryWrites=true&w=majority";
+const uri = "mongodb+srv://root_out:client_top@cluster0.rfblu.mongodb.net/SecClasS?authSource=admin&replicaSet=atlas-sqyjif-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 const localhostMongoDB = "mongodb://localhost:27017/SECClasS-DB";
 console.log(`URI MongoDB: ${uri}`);
 
@@ -26,9 +27,9 @@ var options1 = {
   useUnifiedTopology: true,
 };
 
-console.log("Conectando Banco");
-mongoose.connect(localhostMongoDB, options1).then(
-  () => { console.log("LocalhostDB Conectado") /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
+console.log("Conecting MongoDB Server...");
+mongoose.connect(uri, options1).then(
+  () => { console.log("...LocalhostDB Conectado") /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
   err => { DB_backup = 0, console.log(`MongoDB err: ${err}`)/** handle initial connection error */ }
 );
 

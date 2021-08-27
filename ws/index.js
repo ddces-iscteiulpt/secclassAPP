@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");/////////////////
 const database = require("./src/services/database");
+const script_review = require("./src/scripts/update_review");
 
 const app = express();
 
@@ -37,6 +38,9 @@ app.use("/comentarios/", comentariosRoutes);
 
 //console.log("Rota Complexos");
 //app.use("/lista", itemRoutes);
+
+console.log("script Review");
+//script_review();
 
 //START PORT SERVER
 app.listen(5003, () => {
