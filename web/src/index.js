@@ -16,7 +16,7 @@ console.log("2 ");
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals(console.timeLog());
 
-
+/*
 var pesquisa = '';
 var nivel = '';
 var tabela = 'Todos'
