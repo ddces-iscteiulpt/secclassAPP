@@ -10,14 +10,14 @@ const app = express();
 
 // server port configuration
 const PORT = 5003;
-const HTTPS_PORT = 443;
+const HTTPS_PORT = 4430;
 
 // import packages HTTPS
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
-/*
+
 // Certificate
 var sslPath = './sllcert/';
 const privateKey = fs.readFileSync(sslPath + 'privkey1.pem', 'utf8');
@@ -29,7 +29,7 @@ const credentials = {
 	cert: certificate,
 	ca: ca
 };
-*/
+
 
 const usuarioRoutes = require("./src/routes/usuario.routes");
 const tabelaRoutes = require("./src/routes/tabela.routes");
@@ -79,7 +79,6 @@ app.use("/", hierarchyRoutes);
 
 //addRevit();
 
-/*
 // Starting both http & https servers
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
@@ -92,9 +91,10 @@ httpServer.listen(PORT, () => {
 httpsServer.listen(HTTPS_PORT, () => {
 	console.log(`.......HTTPS Server is running at PORT ${HTTPS_PORT}`);
 });
-*/
 
+/*
 //START PORT Server
 app.listen(PORT, () => {
   console.log(`.......HTTP Server is running at PORT ${PORT}`);
 });
+*/
