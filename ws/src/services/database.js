@@ -1,39 +1,48 @@
+// Carrega as variáveis de ambiente
+require('dotenv').config();
+
 // Mongoose é a biblioteca para manipular o Mongodb com javascript
-//##### Exemplo da blibioteca
 const mongoose = require("mongoose");
-const uri = "mongodb+srv://Admin_mongo:KwruOypOOnxV29pP@cluster0.y0okk.mongodb.net/SECClasS-DB?retryWrites=true&w=majority";
-//const localhostMongoDB = "mongodb://217.112.93.248:27017/SECClasS-DB";
-//console.log(`URI MongoDB: ${uri}`);
+
+// URI vem das variáveis de ambiente
+const uri = process.env.MONGODB_URI;
+const localhostMongoDB = process.env.LOCALHOST_MONGODB;
+
+// Verificação se a URI foi carregada
+if (!uri) {
+  console.error('MONGODB_URI não encontrada nas variáveis de ambiente');
+  process.exit(1);
+}
 
 var DB_backup;
 
-// opcçoes de segurança e acesso - FUTURO
+// Opções otimizadas para Mongoose 6+
 var options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  autoIndex: false, // Don't build indexes
-  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-  reconnectInterval: 500, // Reconnect every 500ms
-  poolSize: 10, // Maintain up to 10 socket connections
-  // If not connected, return errors immediately rather than waiting for reconnect
-  bufferMaxEntries: 0
-}; //mongoose.connect(uri, options);
-
-var options1 = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  maxPoolSize: 10, // Maintain up to 10 socket connections
+  serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 };
 
 console.log("Connecting DATABASE.........");
-mongoose.connect(uri, options1).then(
-  () => { console.log(".........Cluster0 Connected") /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
-  err => { DB_backup = 0, console.log(`MongoDB err: ${err}`)/** handle initial connection error */ }
+mongoose.connect(uri, options).then(
+  () => { 
+    console.log(".........Cluster0 Connected");
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  },
+  err => { 
+    DB_backup = 0;
+    console.log(`MongoDB err: ${err}`);
+  }
 );
 
 if (DB_backup == 0){
-  console.log(`MongoDB err`);
-  mongoose.connect(uri, options1).then(
-    () => { console.log("ClusterDB Conectado") /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
-    err => { console.log(`MongoDB err: ${err}`)/** handle initial connection error */ }
+  console.log(`Tentando conexão backup...`);
+  mongoose.connect(localhostMongoDB, options).then(
+    () => { console.log("ClusterDB Backup Conectado") },
+    err => { console.log(`MongoDB backup err: ${err}`) }
   );
 }
+
+module.exports = mongoose;

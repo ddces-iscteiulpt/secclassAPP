@@ -9,20 +9,15 @@ console.log("Start Especialidades List ");
 //Visualizando Todos os itens da Tabela Especialidades
 router.get("/lists/especialidades/", async (req, res) => {
   try {
+    // Monta filtro base
+    let filter = {};
+    // Se o parâmetro Status_Uniclass existe e é "Old", exclui esses resultados
+    if (req.query.Status_Uniclass === "Old") {
+      filter.Status_Uniclass = { $ne: "Old" };
+    }
     //Indica o nome do Collection
-    const data = await Especialidade.find({}
-      ,null,
-          {sort: {"_id": 1}},
-          function(err){
-          // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-          if (err)
-          {
-            //res.send(err);
-            data = err;
-            console.log(`err: ${data}`);
-          }
-        });
-    res.json({ error: false, data});
+    const data = await Especialidade.find(filter, null, { sort: { "_id": 1 } });
+    res.json({ error: false, data });
     console.log("Lista de Especialidades");
   } catch (err) {
     console.log("Error DB");
@@ -33,23 +28,15 @@ router.get("/lists/especialidades/", async (req, res) => {
 //Visualizando Todos os itens da Tabela Tabelas
 router.get("/lists/tabelas/", async (req, res) => {
   try {
+    // Monta filtro base
+    let filter = { "code_tabela": { "$ne": null } };
+    // Se o parâmetro Status_Uniclass existe e é "Old", exclui esses resultados
+    if (req.query.Status_Uniclass === "Old") {
+      filter.Status_Uniclass = { $ne: "Old" };
+    }
     //Indica o nome do Collection
-
-    const data = await Tabela.find({"code_tabela": {"$ne": null}}
-      ,null,
-          {sort: {"_id": 1}},
-          function(err){
-          // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-          if (err)
-          {
-            //res.send(err);
-            data = err;
-            console.log(`err: ${data}`);
-          }
-        });
-
-        //data = [];
-    res.json({ error: false, data});
+    const data = await Tabela.find(filter, null, { sort: { "_id": 1 } });
+    res.json({ error: false, data });
     console.log("Lista de Tabelas");
   } catch (err) {
     console.log("Error DB");
