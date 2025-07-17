@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Comentarios from "../Comentarios/comentarios";
+//import Comentarios from "../Comentarios/comentarios"; // COMENTADO - módulo sem exports
 
 import { Modal } from "react-bootstrap";
 const url = "https://toolkit.thenbs.com/uniclass/";
@@ -19,7 +19,7 @@ const Item = ({ item }) => {
           <Modal.Header closeButton>
             <Modal.Title>{item?.titulo_SECClasS}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+         <Modal.Body>
             <script>var={item.code_item}</script>
 
             <div>
@@ -27,7 +27,7 @@ const Item = ({ item }) => {
                 <div class="col-3">
                   <b>Tabela</b>
                 </div>
-                <div class="col-9">{item.tabela_id.nome_secclass}</div>
+                <div class="col-9">{item.code_tabela}</div>
               </div>
               <div class="row">
                 <div class="col-3">
@@ -46,13 +46,31 @@ const Item = ({ item }) => {
                   <b>Título Uniclass 2015</b>
                 </div>
                 <div class="col-8">
-                  <console className="log" value={url}>
+                  {/* <console className="log" value={url}>
                     {" "}
-                  </console>
-                  <a href={url + item.code_item} target="_blank">
+                  </console> */}
+                  <a href={url + item.code_item} target="_blank" rel="noreferrer">
                     {item.title_item}
                   </a>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <b>Versão SECClasS</b>
+                </div>
+                <div class="col-9">{item?.versao_secclas}</div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <b>Versão Uniclass</b>
+                </div>
+                <div class="col-9">{item?.Versao_Uniclass}</div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <b>Estado</b>
+                </div>
+                <div class="col-9">{item?.Status_Version}</div>
               </div>
               <div>
               {(() => {
@@ -71,7 +89,7 @@ const Item = ({ item }) => {
               })()}
               {(() => {
                     if ( item.WBS !== undefined ) {
-                      if (item.WBS.Level_2.titulo !== "") {
+                      if (item.WBS.Level_2?.titulo !== "") {
                         return (
                           <div class="row">
                             <div class="col-3">
@@ -85,7 +103,7 @@ const Item = ({ item }) => {
                 })()}
                 {(() => {
                       if ( item.WBS !== undefined ) {
-                        if (item.WBS.Level_3.titulo !== "") {
+                        if (item.WBS.Level_3?.titulo !== "") {
                           return (
                             <div class="row">
                               <div class="col-3">
@@ -98,6 +116,7 @@ const Item = ({ item }) => {
                       }
                   })()}
               </div>
+              {/*
               {(() => {
                     if ( item.descricao_SECClasS !== undefined ) {
                       return (
@@ -110,11 +129,14 @@ const Item = ({ item }) => {
                     )
                 }
             })()}
+            */}
+            {/*
               <div className="row">
                 <div className="col">
                   <Comentarios id_idtem_secclass={item._id} />
                 </div>
               </div>
+            */}
             </div>
           </Modal.Body>
           <Modal.Footer>
@@ -137,6 +159,7 @@ const Item = ({ item }) => {
   const mostrarItem = () => {
     //alert(item.titulo_SECClasS);
     console.log("Mudar State Modal", showModal);
+    console.log("Item completo:", item); // DEBUG: Ver todos os campos disponíveis
     setShowModal(!showModal);
     //ListarComentarios();
   };
@@ -170,7 +193,7 @@ const Item = ({ item }) => {
       <td>{item.review}</td>
       <td>{item?.titulo_SECClasS}</td>
       <td>{item?.title_item}</td>
-      <td align="center">{item.tabela_id.nome_secclass}</td>
+      <td align="center">{item.tabela_id?.nome_secclass}</td>
       <td align="center">{item.nivel_item}</td>
       <td className="text-center">
         <button className="btn btn-mostrar" onClick={mostrarItem}>

@@ -65,6 +65,10 @@ const ItemSchema = new mongoose.Schema({
   WBS:
   {
     type: mongoose.Schema.Types.Mixed,
+  },
+    Status_Version:
+  {
+    type: String,
   }
 },
 {timestamps: true}

@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from "react";
-import CommentInput from "./ComentariosInput/CommentInput";
-import CommentList from "./CommentList/CommentList";
+// import React, { useState, useEffect } from "react";
+// import CommentInput from "./ComentariosInput/CommentInput";
+// import CommentList from "./CommentList/CommentList";
 //import Pagination from "../Pagination/Pagination";
-import api from "../../services/api";
+// import api from "../../services/api";
 
+// Componente temporário até ser implementado
+const Comentarios = () => {
+  return null;
+};
+
+export default Comentarios;
+
+/*
 const Comentarios = ({ id_idtem_secclass }) => {
   const [comment, setComment] = useState([]);
   const [showInput, setShowInput] = useState(false);
@@ -75,8 +83,8 @@ const Comentarios = ({ id_idtem_secclass }) => {
   );
 };
 
-export default Comentarios;
-
+// export default Comentarios; // REMOVIDO - já exportado acima
+*/
 /*
       <div className="comment-button-comand row">
 <div className="col-3">

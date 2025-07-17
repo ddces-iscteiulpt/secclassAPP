@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Comentarios from "../Comentarios/comentarios";
+//import Comentarios from "../Comentarios/comentarios";
 
 import { Modal } from "react-bootstrap";
 const url = "https://toolkit.thenbs.com/uniclass/";
@@ -49,7 +49,7 @@ const Lista = ({ item }) => {
                   <console className="log" value={url}>
                     {" "}
                   </console>
-                  <a href={url + item.code_item} target="_blank">
+                  <a href={url + item.code_item} target="_blank" rel="noreferrer">
                     {item.title_item}
                   </a>
                 </div>
@@ -68,7 +68,7 @@ const Lista = ({ item }) => {
               </div>
               <div className="row">
                 <div className="col">
-                  <Comentarios id_idtem_secclass={item._id} />
+                  {/*<Comentarios id_idtem_secclass={item._id} /> */}
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Item from "../../components/Item";
-// import Pagination from "../../components/Pagination/Pagination";
+import Pagination from "../../components/Pagination/Pagination";
 import api from "../../services/api";
 
 const LIMIT_PADRAO = 50;
@@ -11,12 +11,12 @@ const Revisao = () => {
     code_tabela: "Todos",
     nivel_item: 4,
     titulo_SECClasS: "",
-    Estado: "",
+    Especialidade: "",
   });
 
   const [itens, setItens] = useState([]);
-  // const [offset, setOffset] = useState(0);
-  const [LIMIT] = useState({ value: LIMIT_PADRAO });
+  const [offset, setOffset] = useState(0);
+  const [LIMIT, setLIMIT] = useState({ value: LIMIT_PADRAO });
 
   console.log("Filtros Selecionados - Inicio ", filtros);
   console.log("Limite", LIMIT);
@@ -25,7 +25,7 @@ const Revisao = () => {
   const visualizar = async () => {
     try {
       //Url de pesquisa da API
-      const urlFiltros = `${filtros.titulo_SECClasS}&tabela=${filtros.code_tabela}&nivel=${filtros.nivel_item}&estado=${filtros.Estado}`;
+      const urlFiltros = `${filtros.titulo_SECClasS}&tabela=${filtros.code_tabela}&nivel=${filtros.nivel_item}&especialidade=${filtros.Especialidade}`;
       console.log("urlFiltros ", urlFiltros);
       const response = await api.get(`/search?pesquisa=${urlFiltros}`);
 
@@ -139,16 +139,42 @@ const Revisao = () => {
               onChange={(e) => {
                 setFiltros({
                   ...filtros,
-                  Estado: e.target.value,
+                  Especialidade: e.target.value,
                 });
               }}
             >
               <option value="" selected>
                 ---
               </option>
-              <option value="Obsoleto">Obsoleto</option>
-              <option value="Versão Corrente">Versão Corrente</option>
-              <option value="Apenas na Versão Portuguesa">Apenas na Versão Portuguesa</option>
+              <option value="Todas">Todas as Especialidades</option>
+              <option value="Genérico">Genérico</option>
+              <option value="Arquitetura">Arquitetura</option>
+              <option value="Climatização">Climatização</option>
+              <option value="Desenho CAD">Desenho CAD</option>
+              <option value="Eletricidade e Telecomunicações">
+                Eletricidade e Telecomunicações
+              </option>
+              <option value="Eng. Ferroviária">Eng. Ferroviária</option>
+              <option value="Eng. Hidráulica">Eng. Hidráulica</option>
+              <option value="Eng. Mecânica">Eng. Mecânica</option>
+              <option value="Eng. Naval">Eng. Naval</option>
+              <option value="Eng. Rodoviária">Eng. Rodoviária</option>
+              <option value="Ensino">Ensino</option>
+              <option value="Estruturas">Estruturas</option>
+              <option value="Facility Management">Facility Management</option>
+              <option value="Geotecnia">Geotecnia</option>
+              <option value="Gestão de projeto">Gestão de projeto</option>
+              <option value="Gestão de resíduos">Gestão de resíduos</option>
+              <option value="Médico Hospitalar">Médico Hospitalar</option>
+              <option value="Paisagismo">Paisagismo</option>
+              <option value="Redes Prediais">Redes Prediais</option>
+              <option value="Serviços de Segurança e Incêndio">
+                Serviços de Segurança e Incêndio
+              </option>
+              <option value="Sistemas Construtivos">
+                Sistemas Construtivos
+              </option>
+              <option value="Topografia">Topografia</option>
             </select>
           </div>
         </div>
@@ -207,11 +233,11 @@ const Revisao = () => {
           <tr>
             <th scope="col-4">Código</th>
             <th class="text-center" scope="col-2"></th>
-            <th scope="col-5">Título (PT)</th>
-            <th scope="col-5">Title (EN)</th>
-            <th class="text-center" scope="col-2">
-              {/* Tabela */}
-            </th>
+            <th scope="col-4">Título (PT)</th>
+            <th scope="col-4">Title (EN)</th>
+            {/* <th class="text-center" scope="col-2">
+              Tabela
+            </th> */}
             <th class="text-center" scope="col-2">
               Nível
             </th>

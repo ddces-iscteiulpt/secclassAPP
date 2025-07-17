@@ -95,6 +95,7 @@ const Home = () => {
               </option>
               <option value="Sistemas"> Sistemas (Ss)</option>
               <option value="Produtos"> Produtos (Pr)</option>
+              <option value="Materiais"> Materiais(Ma)</option>
               <option value="Ferramentas e Equipamentos">
                 {" "}
                 Ferramentas e Equipamentos (TE)
@@ -185,9 +186,9 @@ const Home = () => {
             <th scope="col-4">Código</th>
             <th scope="col-4">Título</th>
 
-            <th class="text-center" scope="col-2">
+            {/* <th class="text-center" scope="col-2">
               Tabela
-            </th>
+            </th> */}
             <th class="text-center" scope="col-2">
               Nível
             </th>

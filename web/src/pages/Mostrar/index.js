@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FormCheck } from "react-bootstrap";
-import Item from "../../components/Item";
-import api from "../../services/api";
+// import Item from "../../components/Item";
 import SearchInput from "../../components/SearchInput";
 const Mostrar = () => {
   //Filtros Defaut
@@ -11,13 +10,13 @@ const Mostrar = () => {
     titulo_SECClasS: "",
   });
 
-  const [itens, setItens] = useState([]);
-  const [info, setInfo] = useState([]);
+  // const [itens, setItens] = useState([]);
+  // const [info, setInfo] = useState([]);
   const [pesquisa, setPesquisa] = useState([]);
   /* Exemplos de Pesquisas
         http://193.136.189.87:5003/search?pesquisa=&nivel=&tabela=&revisao=false
   */
-  const url = "search?pesquisa=&nivel=&tabela=&revisao=false";
+  // const url = "search?pesquisa=&nivel=&tabela=&revisao=false";
   //Nova Função de Pesquisa
   useEffect(() => {});
 
@@ -97,9 +96,9 @@ const Mostrar = () => {
             <th scope="col-4">Código</th>
             <th scope="col-4">Título</th>
 
-            <th class="text-center" scope="col-2">
+            {/* <th class="text-center" scope="col-2">
               Tabela
-            </th>
+            </th> */}
             <th class="text-center" scope="col-2">
               Nível
             </th>
@@ -111,9 +110,9 @@ const Mostrar = () => {
         </thead>
 
         <tbody className="table-hover">
-          {itens.map((item) => {
+          {/* {itens.map((item) => {
             return <Item item={item} />;
-          })}
+          })} */}
         </tbody>
       </table>
     </div>
