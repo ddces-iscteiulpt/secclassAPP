@@ -11,7 +11,7 @@ const Revisao = () => {
     code_tabela: "Todos",
     nivel_item: 4,
     titulo_SECClasS: "",
-    Estado: "",
+    Estado: "Versão Corrente",
   });
 
   const [itens, setItens] = useState([]);
@@ -143,12 +143,9 @@ const Revisao = () => {
                 });
               }}
             >
-              <option value="" selected>
-                ---
-              </option>
-              <option value="Obsoleto">Obsoleto</option>
-              <option value="Versão Corrente">Versão Corrente</option>
-              <option value="Apenas na Versão Portuguesa">Apenas na Versão Portuguesa</option>
+              <option value="Versão Corrente" selected>Versão em Vigor (v2.0)</option>
+              <option value="Apenas na Versão Portuguesa">Termos Nacionais</option>
+              <option value="Obsoleto">Obsoletos</option>
             </select>
           </div>
         </div>

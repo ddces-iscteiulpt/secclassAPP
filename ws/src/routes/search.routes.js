@@ -84,6 +84,10 @@ router.get("/search/", async (req, res) => {
     var estadoFilter;
     if (estado === undefined || estado == "") {
       estadoFilter = {}; // Sem filtro por estado
+    } else if (estado === "Versão Corrente") {
+      estadoFilter = {
+        "Status_Version": { $in: ["Versão Corrente", "Apenas na Versão Portuguesa"] }
+      };
     } else {
       estadoFilter = {
         "Status_Version": estado
